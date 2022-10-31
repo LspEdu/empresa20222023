@@ -21,15 +21,10 @@
         $codigo = obtener_post('codigo');
         $denominacion = obtener_post('denominacion');
         comprobar_params($codigo, $denominacion);
-        // Validar
         validar_digitos($codigo, 'codigo', $error);
-        comprobar_errores($error);
         validar_rango_numerico($codigo, 'codigo', 0, 99, $error);
-        // TODO
         validar_existe('departamentos', 'codigo', $codigo, 'codigo', $error);
-        //
         validar_longitud($denominacion, 'denominacion', 1, 255, $error);
-        comprobar_errores($error);
         $sent = $pdo->prepare("UPDATE departamentos
                                   SET codigo = :codigo,
                                       denominacion = :denominacion
